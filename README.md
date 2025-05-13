@@ -40,5 +40,5 @@ The model focuses on current playoff teams (WSH, CAR, TOR, FLA, WPG, DAL, VGK, E
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/nhl-stanley-cup-predictor.git
+   git clone https://github.com/timothyfarmer/nhl-stanley-cup-predictor.git
    cd nhl-stanley-cup-predictor
