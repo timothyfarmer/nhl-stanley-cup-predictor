@@ -1,6 +1,6 @@
 # NHL Stanley Cup Winner Prediction Model
 
-![NHL Logo](https://www.nhl.com/assets/images/logos/nhl-logo.svg)
+![NHL Logo](https://media.d3.nhle.com/image/private/t_q-best/prd/assets/nhl/logos/nhl_shield_wm_on_dark_fqkbph)
 
 A TypeScript-based machine learning model to predict the 2025 Stanley Cup winner using 2024-2025 NHL season data. The model leverages team-level statistics from the regular season and playoffs, head-to-head matchup results, and series win probabilities, employing a Random Forest classifier trained on real historical data from 2022–2024 Stanley Cup winners and losers.
 
