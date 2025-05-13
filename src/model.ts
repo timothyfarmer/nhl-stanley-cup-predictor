@@ -137,7 +137,14 @@ const realHistoricalData: HistoricalTeamStats[] = [
   },
 ];
 
-export async function predictStanleyCupWinner(teams: string[]): Promise<{ team: string; score: number }[]> {
+// Softmax function to convert scores to probabilities
+function softmax(scores: number[]): number[] {
+  const expScores = scores.map(score => Math.exp(score));
+  const sumExpScores = expScores.reduce((sum, val) => sum + val, 0);
+  return expScores.map(expScore => expScore / sumExpScores);
+}
+
+export async function predictStanleyCupWinner(teams: string[]): Promise<{ team: string; score: number; probability: number }[]> {
   console.log('Predicting for teams:', teams);
   if (!teams.length) {
     console.error('No teams provided for prediction.');
@@ -280,13 +287,17 @@ export async function predictStanleyCupWinner(teams: string[]): Promise<{ team: 
     );
   });
 
-  // Combine results
+  // Convert scores to probabilities using softmax
+  const probabilities = softmax(scores);
+
+  // Combine results with scores and probabilities
   const results = filteredPlayoffTeamData.map((team, i) => ({
     team: team.team,
-    score: predictions[i] === 1 ? scores[i] + 10 : scores[i],
+    score: scores[i],
+    probability: probabilities[i] * 100, // Convert to percentage
   }));
 
-  // Sort by score
+  // Sort by score (probabilities will follow the same order)
   const sortedResults = results.sort((a, b) => b.score - a.score);
   console.log('Final Results:', sortedResults);
 
